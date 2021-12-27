@@ -10,7 +10,6 @@ export default class viewHome{
         this.main();
         this.footer();
         this.mainContainer = document.querySelector('main');
-        this.table = document.querySelector('.inchirieri table');
         this.allCards();
         this.cardsContainer = document.querySelector('.cards-container');
 
@@ -19,7 +18,19 @@ export default class viewHome{
 
 
         this.data = new Data();
-        this.insertAllCards();
+        this.asyncHandler();
+
+        this.table = document.querySelector('.tbody');
+    }
+
+    asyncHandler =async()=>{
+        try{
+            await this.insertTableData();
+            await this.insertAllCards();
+
+        }catch(e){
+            console.log(e);
+        }
     }
 
     header=()=>{
@@ -32,8 +43,6 @@ export default class viewHome{
 
                 <nav>
                     <a href="#" class="conectare" >Conectare</a>
-                    <!-- <a href="#">Profil</a>
-                    <a href="#">Deconectare</a> -->
                 </nav>
             </section>
         </header>
@@ -47,48 +56,17 @@ export default class viewHome{
             <section class="inchirieri">
                 <h1>Ultimele 5 inchirieri</h1>
                 <table>
-                    <tr>
-                    <th>Nr:</th>
-                    <th>Client</th>
-                    <th>Marca</th>
-                    <th>Pret</th>
-                    <th>Perioada</th>
-                    </tr>
-                    <tr>
-                    <td>1</td>
-                    <td>Client 1</td>
-                    <td>BMW</td>
-                    <td>3000</td>
-                    <td>1 luna</td>
-                    </tr>
-                    <tr>
-                        <td>2</td>
-                        <td>Client 2</td>
-                        <td>Mercedes</td>
-                        <td>5000</td>
-                        <td>1 luna</td>
-                    </tr>
-                    <tr>
-                        <td>3</td>
-                        <td>Client 3</td>
-                        <td>Audi</td>
-                        <td>6000</td>
-                        <td>1 luna</td>
-                    </tr>
-                    <tr>
-                        <td>4</td>
-                        <td>Client 4</td>
-                        <td>Dacia</td>
-                        <td>2000</td>
-                        <td>1 luna</td>
-                    </tr>
-                    <tr>
-                        <td>5</td>
-                        <td>Client 5</td>
-                        <td>Toyota</td>
-                        <td>3500</td>
-                        <td>1 luna</td>
-                    </tr>
+                    <thead>
+                        <tr>
+                            <th>Nr:</th>
+                            <th>Client</th>
+                            <th>Marca</th>
+                            <th>Pret</th>
+                            <th>Perioada</th>
+                        </tr>
+                    </thead>
+                    <tbody class ="tbody">
+                    </tbody>
                 </table>
             </section>
         </main>
@@ -139,6 +117,33 @@ export default class viewHome{
         }
         
     }
+
+    insertTableData = async()=>{
+        
+        let obj = await this.data.getAllAssociation();
+        let nr= 1;
+
+        if(obj){
+            for(let e of obj){
+                this.createTableTr(e,nr);
+                nr++;
+            }
+        }
+
+    }
+    
+    createTableTr=(obj, nr)=>{
+        this.table.innerHTML +=
+        `
+        <tr>
+            <td>${nr}</td>
+            <td>${obj.CustomersAssociation.name}</td>
+            <td>${obj.CarsAssociation.marca}</td>
+            <td>${obj.CarsAssociation.pret}$</td>
+            <td>${obj.perioada} luni</td>
+        </tr>
+        `
+    } 
 
     createCard=(obj)=>{
         this.cardsContainer.innerHTML +=

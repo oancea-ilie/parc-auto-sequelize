@@ -40,4 +40,62 @@ export default class Data{
         }
         
     }
+
+    async getAllCustomers(){
+
+        try{
+            const rez = await this.api('http://localhost:3000/api/customers');
+
+            if(rez.status == 200){
+                return rez.json();
+            }else{
+                return null;
+            }
+
+        }catch(e){
+
+            console.log(e);
+
+        }
+        
+    }
+
+    async getAllAssociation(){
+
+        try{
+            const rez = await this.api('http://localhost:3000/api/rentals/join');
+
+            if(rez.status == 200){
+                return rez.json();
+            }else{
+                return null;
+            }
+
+        }catch(e){
+
+            console.log(e);
+
+        }
+        
+    }
+
+    async createCustomer(newCustomer){
+
+        try{
+            const response = await this.api(`http://localhost:3000/api/customers/add`,'POST', newCustomer);
+            
+            if(response.status==200){
+                return response.json();
+
+            }else{
+
+                return null;
+            }
+
+         }catch(e){
+
+            console.log(e);
+
+         }
+    }
 }
