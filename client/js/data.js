@@ -98,4 +98,25 @@ export default class Data{
 
          }
     }
+
+
+    async getCarsSort(sort){
+
+        try{
+            const rez = await this.api(`http://localhost:3000/api/cars/sort/${sort}`);
+
+            if(rez.status == 200){
+                return rez.json();
+            }else{
+                return null;
+            }
+
+        }catch(e){
+
+            console.log(e);
+
+        }
+        
+    }
+    
 }

@@ -21,12 +21,17 @@ export default class viewHome{
         this.asyncHandler();
 
         this.table = document.querySelector('.tbody');
+        this.select = document.querySelector('.sort');
     }
 
     asyncHandler =async()=>{
         try{
             await this.insertTableData();
             await this.insertAllCards();
+            
+            this.select.addEventListener('change',async(e)=>{
+                await this.handleSort(e)
+            });
 
         }catch(e){
             console.log(e);
@@ -88,7 +93,7 @@ export default class viewHome{
         <section class="all-cards">
             <section class="title">
                 <h1>Portofoliu Masini</h1>
-                <select>
+                <select class="sort">
                     <option>Populare</option>
                     <option>An</option>
                     <option>Pret</option>
@@ -177,6 +182,22 @@ export default class viewHome{
             </section>
         </section>
         `
+    }
+
+    handleSort=async(e)=>{
+        let sort = e.target.value;
+        sort = sort.toLowerCase();
+
+        if(sort == "pret" || sort=="an" || sort=="marca"){
+            this.cardsContainer.innerHTML = '';
+            let cars = await this.data.getCarsSort(sort);
+            if(cars){
+                for( let e of cars){
+
+                    this.createCard(e);
+                }
+            }
+        }
     }
 
     handleConnect=()=>{
