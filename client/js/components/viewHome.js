@@ -30,7 +30,7 @@ export default class viewHome{
             await this.insertAllCards();
             
             this.select.addEventListener('change',async(e)=>{
-                await this.handleSort(e)
+                await this.handleSort(e);
             });
 
         }catch(e){

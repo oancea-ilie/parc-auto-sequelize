@@ -1051,4 +1051,122 @@ nav .fa-sign-out-alt:hover {
   }
 }
 
+.date-personale h2 {
+  font-size: 1.3rem;
+  text-align: center;
+  color: #5bccf6;
+  margin-bottom: 1rem;
+}
+
+.date-personale-container {
+  width: 80%;
+  display: flex;
+  flex-direction: column;
+  margin: 0 auto;
+  background-color: #fcde67;
+  padding: 1rem;
+  font-size: 1.1rem;
+  border-radius: 5px;
+}
+.date-personale-container p {
+  padding: 0.5rem 0;
+}
+.date-personale-container p span {
+  display: inline-block;
+  width: 70px;
+  font-weight: bold;
+  padding-right: 0.3rem;
+}
+.date-personale-container p a {
+  text-decoration: none;
+  color: #5bccf6;
+  transition: 0.3s all;
+}
+.date-personale-container p a:hover {
+  color: #3fa4c8;
+}
+.date-personale-container input {
+  display: none;
+  margin: 0.5rem 0;
+  border-radius: 5px;
+  outline: none;
+  border: 1px solid #5bccf6;
+  padding: 0.2rem 1rem;
+  text-align: center;
+  transition: 0.3s all;
+  font-size: 1.1rem;
+}
+.date-personale-container input:hover {
+  border: 2px solid #5bccf6;
+}
+.date-personale-container button {
+  display: none;
+  border: none;
+  background-color: #5bccf6;
+  border-radius: 5px;
+  padding: 0.3rem 1rem;
+  transition: 0.3s all;
+  cursor: pointer;
+}
+.date-personale-container button:hover {
+  background-color: #3fa4c8;
+}
+.date-personale-container .info {
+  font-size: 1.1rem;
+  margin-top: 1rem;
+  text-align: center;
+  color: #12d112;
+}
+
+.user-details {
+  display: grid;
+}
+.user-details h1 {
+  margin: 2rem 0;
+  font-size: 1.5rem;
+  text-align: center;
+}
+
+.istoric-comenzi {
+  margin-bottom: 2rem;
+}
+.istoric-comenzi h2 {
+  font-size: 1.3rem;
+  text-align: center;
+  color: #5bccf6;
+  margin: 1rem 0;
+  margin-top: 1.5rem;
+}
+
+.istoric-comenzi-container {
+  width: 80%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  margin: 0 auto;
+  background-color: #5bccf6;
+  padding: 1rem;
+  font-size: 1.1rem;
+  border-radius: 5px;
+}
+.istoric-comenzi-container .istoric-comenzi-container-card {
+  width: 220px;
+  align-items: center;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-bottom: 1rem;
+  background-color: #6b6b6b;
+  color: white;
+  border-radius: 5px;
+  padding: 0.3rem;
+}
+.istoric-comenzi-container .istoric-comenzi-container-card p {
+  padding: 0.4rem 0.5rem;
+}
+.istoric-comenzi-container .istoric-comenzi-container-card:last-of-type {
+  margin-bottom: 0;
+}
+
 /*# sourceMappingURL=style.css.map */

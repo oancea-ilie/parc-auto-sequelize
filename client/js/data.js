@@ -41,6 +41,44 @@ export default class Data{
         
     }
 
+    async getCustomerById(id){
+
+        try{
+            const rez = await this.api(`http://localhost:3000/api/customers/${id}`);
+
+            if(rez.status == 200){
+                return rez.json();
+            }else{
+                return null;
+            }
+
+        }catch(e){
+
+            console.log(e);
+
+        }
+        
+    }
+
+    async getRentailsByCustomerId(id){
+
+        try{
+            const rez = await this.api(`http://localhost:3000/api/rentals/by-customer-id/${id}`);
+
+            if(rez.status == 200){
+                return rez.json();
+            }else{
+                return null;
+            }
+
+        }catch(e){
+
+            console.log(e);
+
+        }
+        
+    }
+
     async getAllCustomers(){
 
         try{
@@ -104,6 +142,25 @@ export default class Data{
 
         try{
             const rez = await this.api(`http://localhost:3000/api/cars/sort/${sort}`);
+
+            if(rez.status == 200){
+                return rez.json();
+            }else{
+                return null;
+            }
+
+        }catch(e){
+
+            console.log(e);
+
+        }
+        
+    }
+
+    async updatePassword(newPassword,id){
+
+        try{
+            const rez = await this.api(`http://localhost:3000/api/customers/${id}`,'PUT', newPassword);
 
             if(rez.status == 200){
                 return rez.json();

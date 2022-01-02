@@ -1,9 +1,10 @@
 import viewHome from "./viewHome.js";
 import Data from "../data.js";
+import viewUserDetails from "./viewUserDetails.js";
 
 export default  class viewUserInterface{
-    constructor(name){
-        this.customerNam = name;
+    constructor(id){
+        this.customerId = id;
         this.body = document.querySelector('body');
         this.header();
         this.main();
@@ -23,6 +24,7 @@ export default  class viewUserInterface{
         this.asyncHandler();
 
         this.table = document.querySelector('.tbody');
+        this.select = document.querySelector('.sort');
     }
 
 
@@ -30,6 +32,10 @@ export default  class viewUserInterface{
         try{
             await this.insertTableData();
             await this.insertAllCards();
+
+            this.select.addEventListener('change',async(e)=>{
+                await this.handleSort(e);
+            });
 
         }catch(e){
             console.log(e);
@@ -92,7 +98,7 @@ export default  class viewUserInterface{
         <section class="all-cards">
             <section class="title">
                 <h1>Portofoliu Masini</h1>
-                <select>
+                <select  class="sort">
                     <option>Populare</option>
                     <option>An</option>
                     <option>Pret</option>
@@ -183,9 +189,25 @@ export default  class viewUserInterface{
         `
     }
 
+    handleSort=async(e)=>{
+        let sort = e.target.value;
+        sort = sort.toLowerCase();
+
+        if(sort == "pret" || sort=="an" || sort=="marca"){
+            this.cardsContainer.innerHTML = '';
+            let cars = await this.data.getCarsSort(sort);
+            if(cars){
+                for( let e of cars){
+
+                    this.createCard(e);
+                }
+            }
+        }
+    }
+
 
     handleUserBtn=()=>{
-        console.log('NEIMPLEMENTAT INCA ');
+        let nou = new viewUserDetails(this.customerId);
     }
 
     handleLogOutBtn=()=>{

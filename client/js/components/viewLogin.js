@@ -61,7 +61,7 @@ export default  class viewLogin{
         if(customers){
             for(let obj of customers){
                 if(obj.email == this.email.value && obj.password == this.pass.value){
-                    let nou = new viewUserInterface(obj.name);
+                    let nou = new viewUserInterface(obj.id);
                 }
                 if(obj.email == this.email.value && obj.password != this.pass.value){
                     this.err.textContent = 'Wrong Password!';
