@@ -451,6 +451,20 @@ footer p a:hover {
   transition: 0.4s all;
   box-shadow: 5px 4px 29px -4px rgba(0, 0, 0, 0.75);
 }
+.card .car-info {
+  display: none;
+  text-align: center;
+  font-size: 1.3rem;
+  color: #0ec50e;
+}
+.card p {
+  font-size: 1.3rem;
+  font-weight: bold;
+  padding: 0.7rem;
+}
+.card p span {
+  color: red;
+}
 .card img {
   border-radius: 5px 5px 50px 50px;
   width: 100%;
@@ -628,6 +642,12 @@ footer p a:hover {
   }
 }
 @media (min-width: 1024px) {
+  .card .car-info {
+    font-size: 1.4rem;
+  }
+  .card p {
+    font-size: 1.4rem;
+  }
   .card .marca img {
     width: 35px;
   }
@@ -671,6 +691,9 @@ footer p a:hover {
 
 .card:hover {
   background-color: #5bccf6;
+}
+.card:hover .car-info {
+  color: white;
 }
 .card:hover .card-btns .inchiriere-btn {
   background-color: #fcde67;
@@ -1057,35 +1080,52 @@ nav .fa-sign-out-alt:hover {
   color: #5bccf6;
   margin-bottom: 1rem;
 }
+@media (min-width: 425px) {
+  .date-personale h2 {
+    font-size: 1.4rem;
+    margin-bottom: 1.5rem;
+  }
+}
+@media (min-width: 768px) {
+  .date-personale h2 {
+    font-size: 1.5rem;
+    margin-bottom: 1.5rem;
+  }
+}
+@media (min-width: 1024px) {
+  .date-personale h2 {
+    font-size: 1.7rem;
+    margin-bottom: 1.5rem;
+  }
+}
 
 .date-personale-container {
   width: 80%;
-  display: flex;
-  flex-direction: column;
   margin: 0 auto;
   background-color: #fcde67;
   padding: 1rem;
   font-size: 1.1rem;
   border-radius: 5px;
 }
-.date-personale-container p {
+.date-personale-container h3 {
   padding: 0.5rem 0;
-}
-.date-personale-container p span {
-  display: inline-block;
-  width: 70px;
+  font-size: 1.2rem;
   font-weight: bold;
-  padding-right: 0.3rem;
 }
-.date-personale-container p a {
+.date-personale-container h3 span {
+  font-weight: normal;
+  font-size: 1.2rem;
+}
+.date-personale-container h3 a {
   text-decoration: none;
   color: #5bccf6;
   transition: 0.3s all;
 }
-.date-personale-container p a:hover {
+.date-personale-container h3 a:hover {
   color: #3fa4c8;
 }
 .date-personale-container input {
+  width: 100%;
   display: none;
   margin: 0.5rem 0;
   border-radius: 5px;
@@ -1100,6 +1140,7 @@ nav .fa-sign-out-alt:hover {
   border: 2px solid #5bccf6;
 }
 .date-personale-container button {
+  width: 100%;
   display: none;
   border: none;
   background-color: #5bccf6;
@@ -1117,6 +1158,83 @@ nav .fa-sign-out-alt:hover {
   text-align: center;
   color: #12d112;
 }
+@media (min-width: 425px) {
+  .date-personale-container h3 {
+    width: 70%;
+    margin: 0 auto;
+    max-width: 230px;
+    font-size: 1.2rem;
+  }
+  .date-personale-container h3 span {
+    font-size: 1.2rem;
+  }
+  .date-personale-container h3 a {
+    font-size: 1.2rem;
+  }
+  .date-personale-container input {
+    width: 70%;
+    margin: 0.5rem auto;
+    max-width: 230px;
+  }
+  .date-personale-container button {
+    width: 70%;
+    margin: 0.5rem auto;
+    max-width: 230px;
+  }
+}
+@media (min-width: 768px) {
+  .date-personale-container h3 {
+    width: 70%;
+    margin: 0 auto;
+    max-width: 230px;
+    font-size: 1.3rem;
+  }
+  .date-personale-container h3 span {
+    font-size: 1.3rem;
+  }
+  .date-personale-container h3 a {
+    font-size: 1.3rem;
+  }
+  .date-personale-container input {
+    width: 70%;
+    margin: 0.5rem auto;
+    max-width: 230px;
+  }
+  .date-personale-container button {
+    width: 70%;
+    margin: 0.5rem auto;
+    max-width: 230px;
+  }
+}
+@media (min-width: 1024px) {
+  .date-personale-container {
+    height: 325px;
+  }
+  .date-personale-container h3 {
+    width: 70%;
+    margin: 0 auto;
+    max-width: 250px;
+    font-size: 1.4rem;
+  }
+  .date-personale-container h3 span {
+    font-size: 1.4rem;
+  }
+  .date-personale-container h3 a {
+    font-size: 1.4rem;
+  }
+  .date-personale-container input {
+    width: 70%;
+    margin: 0.5rem auto;
+    max-width: 250px;
+    padding: 0.3rem 1rem;
+  }
+  .date-personale-container button {
+    width: 70%;
+    margin: 0.5rem auto;
+    max-width: 250px;
+    padding: 0.4rem 1rem;
+  }
+}
 
 .user-details {
   display: grid;
@@ -1125,6 +1243,27 @@ nav .fa-sign-out-alt:hover {
   margin: 2rem 0;
   font-size: 1.5rem;
   text-align: center;
+}
+.user-details .user-container {
+  display: grid;
+}
+@media (min-width: 425px) {
+  .user-details h1 {
+    font-size: 1.7rem;
+  }
+}
+@media (min-width: 768px) {
+  .user-details h1 {
+    font-size: 1.9rem;
+  }
+}
+@media (min-width: 1024px) {
+  .user-details .user-container {
+    grid-template-columns: 1fr 1fr;
+  }
+  .user-details h1 {
+    font-size: 2rem;
+  }
 }
 
 .istoric-comenzi {
@@ -1136,6 +1275,27 @@ nav .fa-sign-out-alt:hover {
   color: #5bccf6;
   margin: 1rem 0;
   margin-top: 1.5rem;
+}
+@media (min-width: 425px) {
+  .istoric-comenzi h2 {
+    font-size: 1.4rem;
+    margin-bottom: 1.5rem;
+  }
+}
+@media (min-width: 768px) {
+  .istoric-comenzi h2 {
+    font-size: 1.5rem;
+    margin-bottom: 1.5rem;
+  }
+}
+@media (min-width: 1024px) {
+  .istoric-comenzi {
+    margin-bottom: 0;
+  }
+  .istoric-comenzi h2 {
+    margin-top: 0;
+    font-size: 1.7rem;
+  }
 }
 
 .istoric-comenzi-container {
@@ -1167,6 +1327,11 @@ nav .fa-sign-out-alt:hover {
 }
 .istoric-comenzi-container .istoric-comenzi-container-card:last-of-type {
   margin-bottom: 0;
+}
+@media (min-width: 1024px) {
+  .istoric-comenzi-container {
+    height: 325px;
+  }
 }
 
 /*# sourceMappingURL=style.css.map */

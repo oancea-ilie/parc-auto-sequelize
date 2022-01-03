@@ -157,6 +157,27 @@ export default class Data{
         
     }
 
+    async createInchiriere(nou){
+
+        try{
+            const response = await this.api(`http://localhost:3000/api/rentals/add`,'POST', nou);
+            
+            if(response.status==200){
+                return response.json();
+
+            }else{
+
+                return null;
+            }
+
+         }catch(e){
+
+            console.log(e);
+
+         }
+        
+    }
+
     async updatePassword(newPassword,id){
 
         try{

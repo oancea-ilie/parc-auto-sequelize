@@ -31,11 +31,31 @@ export default  class viewUserInterface{
     asyncHandler =async()=>{
         try{
             await this.insertTableData();
-            await this.insertAllCards();
+            
+            this.cardsContainer.innerHTML = '';
+            let cars = await this.data.getCarsSort('populare');
+            if(cars){
+                for( let e of cars){
+                    this.createCard(e);
+                }
+            }
 
             this.select.addEventListener('change',async(e)=>{
                 await this.handleSort(e);
+                
+                let inchiriereBtns = document.querySelectorAll('.inchiriere-btn');
+                inchiriereBtns.forEach(e=>e.addEventListener('click', async(e)=>{
+                    await this.handleInchiriere(e);
+                }));
             });
+
+            let perioada = document.querySelectorAll('.perioada-inchiriere');
+            perioada.forEach(e=>e.addEventListener('click',this.handlePerioada));
+
+            let inchiriereBtns = document.querySelectorAll('.inchiriere-btn');
+            inchiriereBtns.forEach(e=>e.addEventListener('click', async(e)=>{
+                await this.handleInchiriere(e);
+            }));
 
         }catch(e){
             console.log(e);
@@ -149,7 +169,7 @@ export default  class viewUserInterface{
             <td>${nr}</td>
             <td>${obj.CustomersAssociation.name}</td>
             <td>${obj.CarsAssociation.marca}</td>
-            <td>${obj.CarsAssociation.pret}$</td>
+            <td>${obj.total}$</td>
             <td>${obj.perioada} luni</td>
         </tr>
         `
@@ -158,7 +178,7 @@ export default  class viewUserInterface{
     createCard=(obj)=>{
         this.cardsContainer.innerHTML +=
         `
-        <section class="card">
+        <section class="card" id = "${obj.id}">
             <img src="img/bmw.jpg" alt="">
             <section class="marca">
                 <img src="img/volan.png"> 
@@ -181,24 +201,71 @@ export default  class viewUserInterface{
                 <option>3 luni</option>
                 <option>6 luni</option>
             </select>
+            <p>Total: <span class="pret-inchiriere">${obj.pret} $</span></p>
+            <p class="car-info"></p>
             <section class="card-btns">
-                <a href="#" class="descriere-btn">Descriere</a>
                 <a href="#" class="inchiriere-btn">Inchiriere</a>
             </section>
         </section>
         `
     }
 
+    handleInchiriere = async(e)=>{
+        let curr = e.target;
+
+        let luna = curr.parentNode.parentNode.children[5].value;
+        luna = parseInt(luna[0]);
+
+        let price =  curr.parentNode.parentNode.children[6].children[0];
+        price = price.textContent;
+        price= price.split(' ');
+        price = parseInt(price);
+
+        let carId = curr.parentNode.parentNode.getAttribute('id');
+        carId = parseInt(carId);
+
+        let obj = {
+            perioada: luna,
+            total: price,
+            personId: this.customerId,
+            masinaId: carId
+        }
+
+        let info = curr.parentNode.parentNode.children[7];
+
+        await this.data.createInchiriere(obj);
+
+        info.style.display = 'block';
+        info.textContent = 'Multumim pentru inchiriere!';
+
+        setTimeout(()=>{
+            let nou = new viewUserInterface(this.customerId);
+        },3000);
+
+    }
+
+    handlePerioada = (e)=>{
+        let totalPrice =  e.target.parentNode.children[6].children[0];
+        let luni = e.target;
+        luni = parseInt(luni.value[0]);
+
+        let pret = e.target.parentNode.children[4].children[1].textContent;
+        pret = parseInt(pret);
+
+        let total = luni * pret;
+        totalPrice.textContent = `${total} $`;
+
+    }
+
     handleSort=async(e)=>{
         let sort = e.target.value;
         sort = sort.toLowerCase();
 
-        if(sort == "pret" || sort=="an" || sort=="marca"){
+        if(sort == "pret" || sort=="an" || sort=="marca" || sort =='populare'){
             this.cardsContainer.innerHTML = '';
             let cars = await this.data.getCarsSort(sort);
             if(cars){
                 for( let e of cars){
-
                     this.createCard(e);
                 }
             }

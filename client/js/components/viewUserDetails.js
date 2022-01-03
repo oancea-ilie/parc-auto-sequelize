@@ -1,5 +1,6 @@
 import viewHome from "./viewHome.js";
 import Data from "../data.js";
+import viewUserInterface from "./viewUserInterface.js";
 
 export default  class viewUserDetails{
     constructor(id){
@@ -8,6 +9,8 @@ export default  class viewUserDetails{
         this.header();
         this.main();
         this.mainContainer = document.querySelector('main');
+        this.brand = document.querySelector('.brand');
+        this.brand.addEventListener("click",this.handleBrand);
 
         this.userBtn = document.querySelector('.user-link');
         this.logOutBtn = document.querySelector('.logout-link');
@@ -76,13 +79,14 @@ export default  class viewUserDetails{
         <section class="user-details">
         <h1>Bine ai venit ${comenzi[1].CustomersAssociation.name} !</h1>
 
-        <section class="date-personale">
+        <section class ="user-container">
+            <section class="date-personale">
             <h2>Date personale:</h2>
             <section class="date-personale-container">
-                <p><span>Nume:</span> ${comenzi[1].CustomersAssociation.name}</p>
-                <p><span>Parola:</span><a href="#" class="change-password">schimba parola</a></p>
-                <p><span>Email:</span> ${comenzi[1].CustomersAssociation.email}</p>
-                <p><span>Telefon:</span>${comenzi[1].CustomersAssociation.phone}</p>
+                <h3>Nume: <span> ${comenzi[1].CustomersAssociation.name}</span> </h3>
+                <h3>Parola: <a href="#" class="change-password"> schimba parola</a></h4>
+                <h3>Email:<span> ${comenzi[1].CustomersAssociation.email}</span> </h3>
+                <h3>Telefon: <span> ${comenzi[1].CustomersAssociation.phone}</span></h3>
                 <input type="password" class="pass-input">
                 <button class="pass-btn">Schimba parola</button>
                 <h4 class="info"></h4>
@@ -94,6 +98,7 @@ export default  class viewUserDetails{
             <section class="istoric-comenzi-container">
 
             </section>
+        </section>
         </section>
     </section>
         `
@@ -115,6 +120,8 @@ export default  class viewUserDetails{
         }
 
     }
+
+
 
     header=()=>{
         this.body.innerHTML = '';
@@ -143,6 +150,10 @@ export default  class viewUserDetails{
 
     handleLogOutBtn=()=>{
         let nou = new viewHome();
+    }
+
+    handleBrand=()=>{
+        let nou = new viewUserInterface(this.customerId);
     }
 
 }
