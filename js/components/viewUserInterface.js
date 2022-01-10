@@ -36,7 +36,7 @@ export default  class viewUserInterface{
             let cars = await this.data.getCarsSort('populare');
             if(cars){
                 for( let e of cars){
-                    this.createCard(e);
+                    this.createCard(e,1);
                 }
             }
 
@@ -136,9 +136,9 @@ export default  class viewUserInterface{
 
     insertAllCards= async (obj)=>{
 
-        this.cardsContainer.innerHTML = '';
         let cars = await this.data.getAllCars();
-
+        
+        this.cardsContainer.innerHTML = '';
         if(cars){
             for( let e of cars){
 
@@ -175,10 +175,15 @@ export default  class viewUserInterface{
         `
     } 
 
-    createCard=(obj)=>{
+    createCard=(obj,ok)=>{
+        let id = obj.id;
+        if(ok == 1){
+            id = obj.masinaId;
+        }
+
         this.cardsContainer.innerHTML +=
         `
-        <section class="card" id = "${obj.id}">
+        <section class="card" id = "${id}">
             <img src="img/bmw.jpg" alt="">
             <section class="marca">
                 <img src="img/volan.png"> 
@@ -211,6 +216,8 @@ export default  class viewUserInterface{
     }
 
     handleInchiriere = async(e)=>{
+        e.preventDefault();
+
         let curr = e.target;
 
         let luna = curr.parentNode.parentNode.children[5].value;
@@ -264,9 +271,14 @@ export default  class viewUserInterface{
         if(sort == "pret" || sort=="an" || sort=="marca" || sort =='populare'){
             this.cardsContainer.innerHTML = '';
             let cars = await this.data.getCarsSort(sort);
+            
             if(cars){
                 for( let e of cars){
-                    this.createCard(e);
+                    if(sort =='populare'){
+                        this.createCard(e,1);
+                    }else{
+                        this.createCard(e,0);
+                    }
                 }
             }
         }

@@ -64,7 +64,6 @@ export default  class viewUserDetails{
         let comenzi = await this.data.getRentailsByCustomerId(this.customerId);
 
         if(comenzi){
-            console.log(comenzi);
             this.getCustomerData(comenzi);
             this.getCustomerOrders(comenzi);
         }
@@ -77,16 +76,16 @@ export default  class viewUserDetails{
         this.mainContainer.innerHTML =
         `
         <section class="user-details">
-        <h1>Bine ai venit ${comenzi[1].CustomersAssociation.name} !</h1>
+        <h1>Bine ai venit ${comenzi[0].CustomersAssociation.name} !</h1>
 
         <section class ="user-container">
             <section class="date-personale">
             <h2>Date personale:</h2>
             <section class="date-personale-container">
-                <h3>Nume: <span> ${comenzi[1].CustomersAssociation.name}</span> </h3>
+                <h3>Nume: <span> ${comenzi[0].CustomersAssociation.name}</span> </h3>
                 <h3>Parola: <a href="#" class="change-password"> schimba parola</a></h4>
-                <h3>Email:<span> ${comenzi[1].CustomersAssociation.email}</span> </h3>
-                <h3>Telefon: <span> ${comenzi[1].CustomersAssociation.phone}</span></h3>
+                <h3>Email:<span> ${comenzi[0].CustomersAssociation.email}</span> </h3>
+                <h3>Telefon: <span> ${comenzi[0].CustomersAssociation.phone}</span></h3>
                 <input type="password" class="pass-input">
                 <button class="pass-btn">Schimba parola</button>
                 <h4 class="info"></h4>
@@ -114,7 +113,7 @@ export default  class viewUserDetails{
                 <section class="istoric-comenzi-container-card">
                         <p>${i+1}</p>
                         <p>${comenzi[i].CarsAssociation.marca}</p>
-                        <p>${comenzi[i].perioada} luna</p>
+                        <p>${comenzi[i].perioada} luni</p>
                 </section>
             `
         }
